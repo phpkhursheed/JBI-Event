@@ -25,9 +25,3 @@ function jbi_event_install() {
 function jbi_event_uninstall() {
 
 }
-
-function jbi_event_theme($existing, $type, $theme, $path) {
-
-
-}
-

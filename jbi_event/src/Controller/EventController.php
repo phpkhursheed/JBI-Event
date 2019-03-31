@@ -1,9 +1,8 @@
 <?php
-    /**
-     * @file
-     * Contains \Drupal\jbi_event\Controller\EventController.
-     */
- 
+/**
+ * @file
+ * Contains \Drupal\jbi_event\Controller\EventController.
+ */ 
 namespace Drupal\jbi_event\Controller;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Url;
@@ -13,48 +12,51 @@ use Drupal\Core\Controller\ControllerBase;
  
 class EventController extends ControllerBase {
 
-  /*==========Function content() to display all the Events and its location to display at frontend==========*/
-  public function content() {
+  /**
+    * Function eventList()
+    * Return all the JBI Events and Display it in a table
+    */
+  public function eventList() {
     $siteUrl = base_path();
     $query = \Drupal::entityQuery('node')
               ->condition('status', 1) //published or not
               ->condition('type', 'jbi_event') //content type
-              ->groupBy('field_event_categories')
-              ->sort('created' , 'DESC') //Display Desc Order
-              ->pager(10); //specify results to return
+              ->sort('field_event_categories' , 'DESC'); //Display Desc Order
     $nids = $query->execute();
     $rows=array();
     $i = 1;
     foreach ($nids as $nid) {
       $node = \Drupal\node\Entity\Node::load($nid);
       $tid =  $node->field_event_categories->target_id;
-      $term = Term::load($tid);
-      $termName = $term->getName();
-      // echo "<pre>";
-      // print_r($node); die();
-
+      if(isset($tid)){
+        $term = Term::load($tid);
+        $termName = $term->getName();
+      }
+      $l = \Drupal::l(t('Subscribe'), Url::fromUri('internal:/jbi_event/subscribe/'.urlencode(base64_encode($nid))));
       $rows[] = array(
         'S. NO.'  => $i,
         'eventName' => $node->title->value,
         'eventLocation' => $node->field_event_location->value,
         'category'      => $termName,
-          array('data' => new FormattableMarkup('<a href=":link">@name</a>', 
-            [':link' => $siteUrl.'jbi_event/subscribe/'.urlencode(base64_encode($nid)), 
-            '@name' => 'Subscribe'])
-          ),
+        'link'          => $l,
       );
       $i++;
     }  
     $header = ['S.No.','Event Name', 'Location', 'Category', 'Action'];
-    return array(
-      '#theme' => 'table',
+
+    $form['table'] = [
+      '#type' => 'table',    
       '#header' => $header,
       '#rows' => $rows,
       '#empty' => t('No Events found'),
-    );   
+    ];
+    return $form;    
   }
 
-  /*==========Function userSubscriber() to get all the subscribers and display at admin ==========*/
+  /**
+    * Function userSubscriber()
+    * Return all the subscribers list and display at admin under content menu
+    */
   public function userSubscriber() { 
     //select records from table
     $query = \Drupal::database()->select('jbi_event_subscriber', 'm');
@@ -65,7 +67,6 @@ class EventController extends ControllerBase {
     foreach($results as $data)
     {
       $node = \Drupal\node\Entity\Node::load($data->node_id);
-      //print the data from table
       $rows[] = array(
       'id' =>$j,
       'name' => $data->name,

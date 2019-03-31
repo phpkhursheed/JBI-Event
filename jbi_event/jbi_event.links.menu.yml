@@ -1,6 +1,6 @@
 jbi_event.admin:
-      title: 'JBI Event Subscriber'
+      title: 'Event Subscribers List'
       description: 'Link to display all the JBI Event Subscriber'
-      parent: system.admin_config
+      parent: system.admin_content
       route_name: jbi_event.userSubscriber
       weight: 100
