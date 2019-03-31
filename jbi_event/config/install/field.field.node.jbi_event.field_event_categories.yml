@@ -1,0 +1,29 @@
+uuid: 5af5045a-4a18-44b2-a7cb-ca8429f64fbc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_event_categories
+    - node.type.jbi_event
+    - taxonomy.vocabulary.event_category
+id: node.jbi_event.field_event_categories
+field_name: field_event_categories
+entity_type: node
+bundle: jbi_event
+label: 'Event Category'
+description: 'Select Event Category'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      event_category: event_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

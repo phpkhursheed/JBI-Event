@@ -1,0 +1,22 @@
+jbi_event.content:
+  path: '/jbi_event/data'
+  defaults:
+    _controller: 'Drupal\jbi_event\Controller\EventController::content'
+    _title: 'Events Data'
+  requirements:
+    _permission: 'access content'
+
+jbi_event.subscribeForm:
+ path: '/jbi_event/subscribe/{nid}'
+ defaults:
+   _form: 'Drupal\jbi_event\Form\subscribeForm'
+ requirements:
+   _permission: 'access content'
+
+jbi_event.userSubscriber:
+  path: '/admin/jbi_event/subscriber'
+  defaults:
+    _controller: 'Drupal\jbi_event\Controller\EventController::userSubscriber'
+    _title: 'Events Subscriber Data'
+  requirements:
+    _role: 'administrator   

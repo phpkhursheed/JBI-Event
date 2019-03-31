@@ -1,0 +1,18 @@
+uuid: d0ae7530-de0d-4f14-998b-60a0e7f45916
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'JBI Event'
+type: jbi_event
+description: 'Custom Content Type of JBI Events.'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: true

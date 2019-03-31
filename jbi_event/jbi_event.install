@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the jbi_event module.
+ */
+use Drupal\Core\Database\Database;
+
+/**
+* Implementation of hook_schema().
+*/
+function jbi_event_schema() {
+
+$schema['jbi_event_subscriber'] = [
+    'description' => 'Stores JBI Event subscribers from jbi_event module.',
+    'fields' => 
+    [
+        'id' => [
+        'type' => 'serial',   
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique users ID.',
+      ],
+      
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'description' => 'Subscriber Name',
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'description' => 'Subscriber Email',
+      ],
+      'node_id' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ],
+    'submission_date' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+        'description' => 'Submission Date',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'name' => ['name'],
+      'email' => ['email'],
+    ],
+  ];
+  return $schema;
+//db_create_table($tablename, $schema);
+
+}
+
+

@@ -1,0 +1,33 @@
+<?php
+
+use Drupal\taxonomy\Entity\Term;
+/**
+* Implementation of hook_install().
+*/
+function jbi_event_install() {
+	// Use schema API to create database table.
+	$categories_vocabulary = 'event_category'; // Machine name
+	$categories = ['Drupal Event - India', 'Drupal Event - USA', 'SEO Meetup - UK', 'Google Analytics Meetup']; // List of Event Cat. terms
+		foreach ($categories as $category) {
+		$term = Term::create(array(
+		'parent' => array(),
+		'name' => $category,
+		'vid' => $categories_vocabulary,
+		))->save();
+	}
+}
+
+
+
+/**
+* Implementation of hook_uninstall().
+*/
+function jbi_event_uninstall() {
+
+}
+
+function jbi_event_theme($existing, $type, $theme, $path) {
+
+
+}
+
