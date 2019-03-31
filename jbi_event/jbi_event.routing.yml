@@ -19,4 +19,4 @@ jbi_event.userSubscriber:
     _controller: 'Drupal\jbi_event\Controller\EventController::userSubscriber'
     _title: 'Events Subscriber Data'
   requirements:
-    _role: 'administrator   
+    _role: 'administrator'   
