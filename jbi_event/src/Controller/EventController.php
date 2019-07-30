@@ -21,7 +21,7 @@ class EventController extends ControllerBase {
               ->condition('type', 'jbi_event') //content type
               ->sort('field_event_categories' , 'DESC'); //Display Desc Order
     $nids = $query->execute();
-    $rows=array();
+    $rows=[];
     $i = 1;
     foreach ($nids as $nid) {
       $node = \Drupal\node\Entity\Node::load($nid);
