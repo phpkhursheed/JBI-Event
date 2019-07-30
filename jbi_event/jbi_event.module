@@ -18,10 +18,3 @@ function jbi_event_install() {
 }
 
 
-
-/**
-* Implementation of hook_uninstall().
-*/
-function jbi_event_uninstall() {
-
-}
