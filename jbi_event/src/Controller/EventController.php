@@ -4,10 +4,9 @@
  * Contains \Drupal\jbi_event\Controller\EventController.
  */ 
 namespace Drupal\jbi_event\Controller;
-use Drupal\Core\Database\Database;
+
 use Drupal\Core\Url;
-use Drupal\taxonomy\Entity\Term;
-use Drupal\Component\Render\FormattableMarkup;   
+use Drupal\taxonomy\Entity\Term;  
 use Drupal\Core\Controller\ControllerBase;
  
 class EventController extends ControllerBase {
