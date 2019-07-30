@@ -16,7 +16,6 @@ class EventController extends ControllerBase {
     * Return all the JBI Events and Display it in a table
     */
   public function eventList() {
-    $siteUrl = base_path();
     $query = \Drupal::entityQuery('node')
               ->condition('status', 1) //published or not
               ->condition('type', 'jbi_event') //content type
