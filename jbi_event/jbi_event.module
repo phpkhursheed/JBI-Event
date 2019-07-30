@@ -17,8 +17,6 @@ function jbi_event_install() {
 	}
 }
 
-
-
 /**
 * Implementation of hook_uninstall().
 */
